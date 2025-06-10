@@ -14,16 +14,16 @@ public class LawOfLargeNumbers {
         int first = arr[n - 1];
         int second = arr[n - 2];
 
-        int temp = k;
-        for(int i = 0; i < m; i++) {
-            if(k != 0) {
-                sum += first;
-                k--;
-            }else {
-                sum += second;
-                k = temp;
-            }
-        }
+        // 큰 수가 반복되는 횟수 구하기
+        int count = (m / (k + 1)) * k;
+        // 반복하는 동안 더해지는 큰 수 구하기
+        sum += count * first;
+        // 반복 후 나머지 더해지는 큰 수 구하기
+        sum += m % (k + 1) * first;
+
+        // 반복되는 만큼 두 번째로 큰 수 더하기
+        sum += (m - count) * second;
+
         return sum;
     }
 }
