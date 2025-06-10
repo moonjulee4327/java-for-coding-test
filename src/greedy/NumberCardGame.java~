@@ -1,0 +1,22 @@
+package greedy;
+
+import java.util.Arrays;
+
+public class NumberCardGame {
+    public static void main(String[] args) {
+
+    }
+
+    private static int solution(int[][] cards) {
+        int max = 0;
+
+        for(int[] card : cards) {
+            Arrays.sort(card);
+            if(card[0] > max) {
+                max = card[0];
+            }
+        }
+        
+        return max;
+    }
+}
