@@ -2,45 +2,29 @@ package implement;
 
 public class UpDownLeftRight {
     public static void main(String[] args) {
-        System.out.println(solution(5, "R R R  U D D"));
+        System.out.println(solution(5, "R R R U D D"));
     }
 
-    private static String solution(int n, String plan) {
-        int x = 1;
-        int y = 1;
-        String[] commands = plan.split(" ");
+    private static String solution(int n, String plans) {
+        int x = 1, y = 1;
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
+        String[] direction = {"U", "D", "L", "R"};
+        String[] commands = plans.split(" ");
 
-        for(int i = 0; i < commands.length; i++) {
-            switch (commands[i]) {
-                case "U":
-                    if(x <= 1) {
-                        continue;
-                    }else {
-                        x -= 1;
-                    }
-                    break;
-                case "D":
-                    if (x > n) {
-                        continue;
-                    }else {
-                        x += 1;
-                    }
-                    break;
-                case "R":
-                    if(y > n) {
-                        continue;
-                    }else {
-                        y += 1;
-                    }
-                    break;
-                case "L":
-                    if(y <=1) {
-                        continue;
-                    }else {
-                        y -= 1;
-                    }
-                    break;
+        for(String command : commands) {
+            int tempX = x, tempY = y;
+            for(int i = 0; i < direction.length; i++) {
+                if(command.equals(direction[i])) {
+                    tempX = dx[i] + x;
+                    tempY = dy[i] + y;
+                }
             }
+            if(tempX > n || tempY > n || tempX < 1 || tempY < 1) {
+                continue;
+            }
+            x = tempX;
+            y = tempY;
         }
 
         return x + " " + y;
