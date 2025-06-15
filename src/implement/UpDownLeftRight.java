@@ -14,19 +14,23 @@ public class UpDownLeftRight {
 
         for(String command : commands) {
             int tempX = x, tempY = y;
+            boolean isValid = false;
             for(int i = 0; i < direction.length; i++) {
                 if(command.equals(direction[i])) {
                     tempX = dx[i] + x;
                     tempY = dy[i] + y;
+                    isValid = true;
+                    break;
                 }
             }
+            // 잘못된 명령어 일 경우
+            if (!isValid) continue;
             if(tempX > n || tempY > n || tempX < 1 || tempY < 1) {
                 continue;
             }
             x = tempX;
             y = tempY;
         }
-
         return x + " " + y;
     }
 }
